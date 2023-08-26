@@ -28,7 +28,7 @@ function Chat() {
     useEffect(()=> {
         setParams(searchParams)
         socket.emit('join', searchParams)
-        socket.emit('user:add', searchParams)
+
         socket.emit('messages_list:get', searchParams)
     }, [search])
 
@@ -39,6 +39,7 @@ function Chat() {
         socket.on('messages_list:update', (messages)=>{
             setMessagesList(messages)
         })
+        socket.emit('user:add', searchParams)
     },[])
     console.log(messagesList)
 
