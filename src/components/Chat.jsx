@@ -28,7 +28,6 @@ function Chat() {
     useEffect(()=> {
         setParams(searchParams)
         socket.emit('join', searchParams)
-
         socket.emit('messages_list:get', searchParams)
     }, [search])
 
