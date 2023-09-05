@@ -1,0 +1,30 @@
+.rooms{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+.rooms::-webkit-scrollbar {
+    display: none;
+  }
+.btn{
+    text-decoration: none;
+    width: 100%;
+    min-height: 30px;
+    background: #FFF;
+    border: none;
+    border-top: 1px solid ;
+    color: #000;
+    font-family: Georgia;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 115%; /* 23px */
+    letter-spacing: 1.2px;
+}
+.btn:hover{
+    cursor: pointer;
+}
+.text{
+    margin: 10px;
+    background: #FFF;
+}

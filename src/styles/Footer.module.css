@@ -1,0 +1,9 @@
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: #EDF2EC;
+}
+.p{
+    margin: 20px;
+}
