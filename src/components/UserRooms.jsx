@@ -1,12 +1,8 @@
-import React, { useEffect, useReducer, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React from 'react'
 
-import io from 'socket.io-client'
-import { URL_API } from '../config'
 
 import styles from '../styles/UserRooms.module.css'
 
-const socket = io.connect(URL_API)
 
 export default function UserRooms({user, rooms, currentRoom}) {
     const handleClick = (e) =>{

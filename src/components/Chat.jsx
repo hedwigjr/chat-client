@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+
 import io from 'socket.io-client'
 import { URL_API } from '../config';
 
@@ -7,38 +7,46 @@ import styles from '../styles/Chat.module.css'
 
 const socket = io.connect(URL_API)
 
-
-
 function Chat({user, room, currentRoom}) {
 
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
-    const [messagesList, setMessagesList] = useState([{user:'', message: ''}]);
-
+    const [messagesList, setMessagesList] = useState([]);
+    const [userRooms, setUserRooms] = useState([])
 
     useEffect(()=> {
-        socket.emit('join', {user, room})
-        socket.emit('messages_list:get', {user, room})
-        socket.emit('users:get')
+        socket.emit('join',{room})
+    }, [])
+
+    useEffect(()=> {
+        socket.emit('join',{room})
+        socket.emit('users:update')
+        socket.emit('messages:update')
     }, [room])
 
-    useEffect(()=>{
-        socket.on('user_list:update', (users)=>{
-            setUsers(users)
+    useEffect(()=> {
+        socket.on('messages:get', (messages)=>{
+            setMessagesList(messages[room])
         })
-        socket.on('messages_list:update', (messages)=>{
-            setMessagesList(messages)
-        })
-        socket.on('user_list:update', (rooms)=>{
-            if(rooms[room] !== undefined){
-                setUsers(rooms[room])
-            }
+        socket.on('users:get', ({usersList, roomsList})=>{
+            setUsers(roomsList[room])
+            setUserRooms(usersList[user])
           })
     })
 
+
+
     function leaveRoom() {
-        socket.emit('user:disconnect',  {user, room})
-        currentRoom('')
+        socket.emit('users:disconnect',{user, room})
+        const choose = (room)=>{
+            if (userRooms[1] !== room){
+                return userRooms[1]
+            } else {
+                if (!userRooms[2]) return ''
+                return userRooms[2]
+            }
+        }
+        currentRoom(choose(room))
     }
 
 
@@ -49,10 +57,9 @@ function Chat({user, room, currentRoom}) {
     const onSubmit = (e) => {
         e.preventDefault()
         if (!message) return;
-        socket.emit('message:add', {user,room, message})
+        socket.emit('messages:add', {user, room, message})
         setMessage('')
       }
-
 
   return (
             <div className={styles.wrapper}>

@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
-import { Socket } from 'socket.io-client';
 
-import io from 'socket.io-client'
-import { URL_API } from '../config'
 
-const socket = io.connect(URL_API)
-
-export default function CreateRoom({user, addRoom, currentRoom}) {
+export default function CreateRoom({ addRoom, currentRoom}) {
     const [newRoom, setNewRoom] = useState('');
 
     const handleClick = (e) =>{
@@ -35,7 +30,7 @@ export default function CreateRoom({user, addRoom, currentRoom}) {
                     required/>
             </form>
             <button type='submit' onClick={handleClick}>
-                            Hit to create😡
+                Hit to create😡
             </button>
 
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import UserRooms from './UserRooms'
-import { Link, useLocation } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 
 import '../styles/style.css'
 import styles from '../styles/UserPage.module.css'
@@ -24,27 +24,27 @@ export default function UserPage() {
   const [room, setRoom] = useState('')
 
   useEffect(()=>{
-          socket.emit('user:add', {user: user, room:''})
+    socket.emit('join', {user, room})
+    socket.emit('users:add', {user, room})
   },[])
+
   useEffect(()=>{
-    socket.on('user_room_list:update', (rooms)=>{
-      if(rooms[user] !== undefined){
-          setRooms(rooms[user])
-      }
+    socket.on('users:get', ({usersList})=>{
+        setRooms(usersList[user])
     })
   })
+
   useEffect(()=>{
-    socket.emit('users:get')
+          socket.emit('users:update')
   },[room])
 
   const addRoom = (newRoom) =>{
-      socket.emit('user:add', {user: user, room: newRoom})
+      socket.emit('users:add', {user: user, room: newRoom})
   }
 
-  const currentRoom = (chat)=>{
-    setRoom(chat)
+  const currentRoom = (room)=>{
+       setRoom(room)
   }
-
 
   return (
     <div className={styles.column}>
@@ -54,10 +54,8 @@ export default function UserPage() {
             <CreateRoom user= {user} addRoom={addRoom} currentRoom={currentRoom}/>
             <UserRooms user={user} rooms ={rooms} currentRoom={currentRoom}/>
           </div>
-
-          {room != '' && <Chat user={user} room ={room} currentRoom={currentRoom}/>}
+          {room !== '' && <Chat user={user} room ={room} currentRoom={currentRoom} />}
         </div>
-
       <Footer />
     </div>
   )
