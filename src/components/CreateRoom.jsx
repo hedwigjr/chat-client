@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-
+import styles from '../styles/CreateRoom.module.css'
 
 export default function CreateRoom({ addRoom, currentRoom}) {
     const [newRoom, setNewRoom] = useState('');
 
     const handleClick = (e) =>{
-        if (!newRoom || newRoom=='') {
+        if (!newRoom || newRoom==='') {
             e.preventDefault()
             return}
         addRoom(newRoom)
@@ -20,16 +20,17 @@ export default function CreateRoom({ addRoom, currentRoom}) {
 
     return (
         <div>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={(e) => e.preventDefault()} >
                 <input
                     type="text"
                     name="newRoom"
                     id ="inputNewRoom"
+                    className={styles.inputNewRoom}
                     placeholder='Hit name your new room'
                     onChange={handleChange}
                     required/>
             </form>
-            <button type='submit' onClick={handleClick}>
+            <button type='submit' onClick={handleClick} className={styles.btn}>
                 Hit to create😡
             </button>
 

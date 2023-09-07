@@ -67,7 +67,7 @@ function Chat({user, room, currentRoom}) {
                     <div className={styles.form}>
                         {messagesList.map((item, i)=> (<span key={i} className={styles.span} > <b>{item.user}</b>: {item.message}<br/></span>))}
                     </div>
-                    <form onSubmit={onSubmit} >
+                    <form onSubmit={onSubmit} className={styles.bb}>
                         <input
                             type="text"
                             name="message"
@@ -87,7 +87,7 @@ function Chat({user, room, currentRoom}) {
                             {Array.isArray(users) && users.map((user, i)=> (<span key={i}> {user} <br/></span>))}
                         </div>
                     </div>
-                    <button onClick={leaveRoom}>Leave this room🤢</button>
+                    <button onClick={leaveRoom} className={styles.btn}>Leave this room🤢</button>
                 </div>
 
             </div>

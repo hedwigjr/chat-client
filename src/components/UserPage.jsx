@@ -35,27 +35,31 @@ export default function UserPage() {
   })
 
   useEffect(()=>{
-          socket.emit('users:update')
+    socket.emit('users:update')
   },[room])
 
   const addRoom = (newRoom) =>{
-      socket.emit('users:add', {user: user, room: newRoom})
+    socket.emit('users:add', {user: user, room: newRoom})
   }
 
   const currentRoom = (room)=>{
-       setRoom(room)
+    setRoom(room)
   }
 
   return (
     <div className={styles.column}>
       <Header user={user} />
-        <div className={styles.row}>
-          <div className={styles.columnInside}>
-            <CreateRoom user= {user} addRoom={addRoom} currentRoom={currentRoom}/>
-            <UserRooms user={user} rooms ={rooms} currentRoom={currentRoom}/>
-          </div>
-          {room !== '' && <Chat user={user} room ={room} currentRoom={currentRoom} />}
+      <div className={['container', styles.flex_grow, styles.background].join(' ')}>
+        <div className={['wrapper', styles.height].join(' ')}>
+            <div className={styles.row}>
+              <div className={styles.columnInside}>
+                <CreateRoom user= {user} addRoom={addRoom} currentRoom={currentRoom}/>
+                {room !== '' && <UserRooms user={user} rooms ={rooms} currentRoom={currentRoom}/>}
+              </div>
+              {room !== '' && <Chat user={user} room ={room} currentRoom={currentRoom} />}
+            </div>
         </div>
+      </div>
       <Footer />
     </div>
   )
