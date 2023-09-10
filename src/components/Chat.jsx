@@ -61,6 +61,10 @@ function Chat({user, room, currentRoom}) {
   return (
             <div className={styles.wrapper}>
                 <div className={styles.chatList}>
+                    <div className={styles.chatListTitle}>
+                        <h4 className={styles.h4}>It's room: <b>{room}</b> </h4>
+                    </div>
+                    
                     <div className={styles.form}>
                         {!!messagesList && messagesList.map((item, i)=> (<span key={i} className={styles.span} > <b>{item.user}</b>: {item.message}<br/></span>))}
                     </div>
@@ -78,7 +82,7 @@ function Chat({user, room, currentRoom}) {
                 </div>
                 <div className={styles.metaList}>
                     <div className={styles.metaWrapper}>
-                        <h4 className={styles.h4}>It's room: {room}</h4>
+                        
                         <div className={styles.chatters} >
                             <p>Current chatters:</p>
                             {Array.isArray(users) && users.map((user, i)=> (<span key={i}> {user} <br/></span>))}
