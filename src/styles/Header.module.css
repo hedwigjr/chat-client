@@ -1,0 +1,42 @@
+.header{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.link{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn{
+    text-decoration: none;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #E06733;
+    background: #EDF2EC;
+    color: #000;
+    font-family: Georgia;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 115%; /* 23px */
+    letter-spacing: 1.2px;
+}
+.user{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0 20px 20px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background: #9fc198;
+}
+.background{
+    background: #EDF2EC;
+}

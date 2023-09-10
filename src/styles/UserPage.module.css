@@ -1,0 +1,28 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    }
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: row;
+    width: 100%;
+    height: 100%;
+    }
+.columnInside{
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    height: 100%;
+}
+.flex_grow{
+    height: 80vh;
+}
+.height{
+    height: 100%;
+}
+.background{
+    background-color: rgb(216, 222, 213);
+}
