@@ -14,9 +14,6 @@ function Chat({user, room, currentRoom}) {
     const [messagesList, setMessagesList] = useState([]);
     const [userRooms, setUserRooms] = useState([])
 
-    useEffect(()=> {
-        socket.emit('join',{room})
-    }, [])
 
     useEffect(()=> {
         socket.emit('join',{room})
@@ -65,7 +62,7 @@ function Chat({user, room, currentRoom}) {
             <div className={styles.wrapper}>
                 <div className={styles.chatList}>
                     <div className={styles.form}>
-                        {messagesList.map((item, i)=> (<span key={i} className={styles.span} > <b>{item.user}</b>: {item.message}<br/></span>))}
+                        {!!messagesList && messagesList.map((item, i)=> (<span key={i} className={styles.span} > <b>{item.user}</b>: {item.message}<br/></span>))}
                     </div>
                     <form onSubmit={onSubmit} className={styles.bb}>
                         <input

@@ -22,21 +22,30 @@ export default function UserPage() {
 
   const [rooms, setRooms] = useState([])
   const [room, setRoom] = useState('')
+  const [once, setOnce] = useState(false)
 
   useEffect(()=>{
     socket.emit('join', {user, room})
     socket.emit('users:add', {user, room})
-  },[])
-
-  useEffect(()=>{
-    socket.on('users:get', ({usersList})=>{
-        setRooms(usersList[user])
-    })
-  })
-
-  useEffect(()=>{
     socket.emit('users:update')
-  },[room])
+  },[user, room])
+
+  useEffect(()=>{
+    if(once !== false) {setRoom(rooms[rooms.length-1])}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[once])
+
+  
+
+  
+  socket.on('users:get', ({usersList})=>{
+    
+    if(rooms.filter(el => el!==null).length > 1 && once === false){
+      setOnce(true)
+    }
+    
+    setRooms(usersList[user].filter(el => el!==null))
+})
 
   const addRoom = (newRoom) =>{
     socket.emit('users:add', {user: user, room: newRoom})
@@ -54,7 +63,7 @@ export default function UserPage() {
             <div className={styles.row}>
               <div className={styles.columnInside}>
                 <CreateRoom user= {user} addRoom={addRoom} currentRoom={currentRoom}/>
-                {room !== '' && <UserRooms user={user} rooms ={rooms} currentRoom={currentRoom}/>}
+                {rooms.filter(el => el!==null).length > 1 && <UserRooms user={user} rooms ={rooms} currentRoom={currentRoom}/>}
               </div>
               {room !== '' && <Chat user={user} room ={room} currentRoom={currentRoom} />}
             </div>
