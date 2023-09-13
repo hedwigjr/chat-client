@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { nanoid } from 'nanoid'
 
 import io from 'socket.io-client'
 import { URL_API } from '../config';
 
 import styles from '../styles/Chat.module.css'
+import { useRef } from 'react';
+import Message from './Message';
 
 const socket = io.connect(URL_API)
 
@@ -13,13 +16,17 @@ function Chat({user, room, currentRoom}) {
     const [message, setMessage] = useState("");
     const [messagesList, setMessagesList] = useState([]);
     const [userRooms, setUserRooms] = useState([])
-
+    const messagesEndRef = useRef(null)
 
     useEffect(()=> {
         socket.emit('join',{room})
         socket.emit('users:update')
         socket.emit('messages:update')
     }, [room])
+    useEffect(() => {
+        scrollToBottom()
+      }, [messagesList]);
+    
 
     useEffect(()=> {
         socket.on('messages:get', (messages)=>{
@@ -31,7 +38,9 @@ function Chat({user, room, currentRoom}) {
           })
     })
 
-
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+      }
 
     function leaveRoom() {
         socket.emit('users:disconnect',{user, room})
@@ -66,8 +75,10 @@ function Chat({user, room, currentRoom}) {
                     </div>
                     
                     <div className={styles.form}>
-                        {!!messagesList && messagesList.map((item, i)=> (<span key={i} className={styles.span} > <b>{item.user}</b>: {item.message}<br/></span>))}
+                        {!!messagesList && messagesList.map((message)=> <Message messageMeta={message} currentUser={user} key={nanoid()}/>)}
+                        <div ref={messagesEndRef} />
                     </div>
+                    
                     <form onSubmit={onSubmit} className={styles.bb}>
                         <input
                             type="text"

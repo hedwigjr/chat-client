@@ -1,0 +1,24 @@
+.wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0;
+}
+.conteiner{
+    background: #EDF2EC;
+    padding: 5px;
+    border-radius: 5px;
+    max-width: 100%;
+    overflow: auto
+}
+
+.center{
+    justify-content: center;
+}
+.left{
+    justify-content: flex-start;
+}
+.right{
+    justify-content: flex-end;
+}
+

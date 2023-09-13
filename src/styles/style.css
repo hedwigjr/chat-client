@@ -1,7 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 html,#root{
+    
     height: 100vh;
     width: 100%;
 }
+
 body {
     padding: 0;
     margin: 0;
