@@ -27,6 +27,9 @@
     cursor: pointer;
     background: #9fc198;
 }
+.current{
+    background: #9fc198;
+}
 .text{
     margin: 10px;
 }

@@ -63,7 +63,7 @@ export default function UserPage() {
             <div className={styles.row}>
               <div className={styles.columnInside}>
                 <CreateRoom user= {user} addRoom={addRoom} currentRoom={currentRoom}/>
-                {rooms.filter(el => el!==null).length > 1 && <UserRooms user={user} rooms ={rooms} currentRoom={currentRoom}/>}
+                {rooms.filter(el => el!==null).length > 1 && <UserRooms currentRoom ={room} rooms ={rooms} setCurrentRoom={currentRoom}/>}
               </div>
               {room !== '' && <Chat user={user} room ={room} currentRoom={currentRoom} />}
             </div>

@@ -1,15 +1,16 @@
 .wrapper{
-    width: 100%;
+    width: calc(100% - 150px);
     display: flex;
     justify-content: flex-end;
 }
 .chatList {
-    width: 100%;
+    width: calc(100% - 100px);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background: #9fc198;
-    margin: 0 10px;
+    background: linear-gradient(to right, rgb(216, 222, 213), #9fc198,  rgb(216, 222, 213));
+    /* background: #9fc198; */
     padding: 10px;
 }
 .chatListTitle{
@@ -32,6 +33,7 @@
    padding: 0 10px;
 }
 .btn{
+    padding: 3px;
     text-decoration: none;
     min-height: 30px;
     background: #FFF;
@@ -56,11 +58,13 @@
 }
 .metaList{
     height: 80vh;
-    width: 200px;
+    min-width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: scroll;
+    padding: 10px;
+    box-sizing: border-box;
 }
 .form{
     background-image: url("../assercs/monkey.png");
@@ -99,6 +103,7 @@
     flex-grow: 1;
 }
 .chatters p{
+    
     margin: 0;
 
 }

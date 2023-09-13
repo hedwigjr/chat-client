@@ -9,19 +9,38 @@ const socket = io.connect(URL_API)
 
 function Main() {
     const [user, setUser] = useState('');
+
+    const [warning, setWarnig] = useState(false)
+
     const navigate = useNavigate();
     const handleChange = (e) => {
         setUser(e.target.value)
     }
 
+
+    const validateUserName = (user) => {
+        user = user.toString().toLowerCase()
+        const vowels = "qwertyuiopasdfghjklzxcvbnm1234567890"
+        for(const el of user){
+            if(!vowels.includes(el) ) {
+                setWarnig(true)
+                return false}
+        }
+        if (user.length>3) {return true} else {
+            setWarnig(true)
+            return false}
+    }
+    
     const handleClick = (e) =>{
-        if (!user) e.preventDefault()
+        (!user || !validateUserName(user)) ? e.preventDefault() :
         socket.emit('user:add', {name: user, room:'default'})
     }
     const handleSubmit = (e) =>{
-        if (!user) e.preventDefault()
-        socket.emit('user:add', {name: user, room:'default'})
-        navigate(`/chat?name=${user}`)
+        if (!user || !validateUserName(user)) {e.preventDefault()} else{
+            socket.emit('user:add', {name: user, room:'default'})
+            navigate(`/chat?name=${user}`)
+        }
+        
     }
 
   return (
@@ -35,8 +54,10 @@ function Main() {
                     placeholder='Username'
                     onChange={handleChange}
                     className={styles.input}
-                    required/>
+                    />
             </form>
+            {warning && <div>Length name must be more than 3 <br/> 
+            Only EN and numbers</div>}
             <Link to={`/chat?name=${user}`}>
                     <button type='submit' onClick={handleClick} className={styles.btn}>
                         Go!
