@@ -12,13 +12,11 @@ export default function UserRooms({user, rooms, currentRoom}) {
         <>
             <h4 className={styles.text}>Your rooms:</h4>
             <div className={styles.rooms}>
-                { rooms.map((room,i)=> {
-                    if(room!='')
-                    return(
+                {!!rooms && rooms.map((room,i) => {
+                    if(room !=='' && !!room) { return (
                     <button key={i} type='submit' value={room} onClick={handleClick} className={styles.btn}>
                         {room}
-                    </button>)
-
+                    </button>) } else {return null}
                     }
                     )
                 }
