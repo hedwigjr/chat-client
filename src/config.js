@@ -1,3 +1,3 @@
 // const url = 'https://online-chat-rljn.onrender.com/'
 
-export const URL_API = 'http://localhost:5000'
+export const URL_API = 'https://online-chat-rljn.onrender.com/'
