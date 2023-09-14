@@ -52,6 +52,10 @@ function Chat({user, room, currentRoom}) {
                 return userRooms[2]
             }
         }
+        if (window.innerWidth<750) {
+            toggle = 'hide'
+            document.getElementById("metaList").style.display = 'none';
+        }
         currentRoom(choose(room))
     }
 
@@ -66,9 +70,19 @@ function Chat({user, room, currentRoom}) {
         socket.emit('messages:add', {user, room, message})
         setMessage('')
       }
+    let toggle = 'hide'
+    function handlerChangeClass () {
+        if(toggle === 'hide'){
+            toggle = 'open'
+            document.getElementById("metaList").style.display = 'flex';
 
+        } else {
+            toggle = 'hide'
+            document.getElementById("metaList").style.display = 'none';
+        }
+    }
   return (
-            <div className={styles.wrapper}>
+            <div className={styles.wrapper} id="chat">
                 <div className={styles.chatList}>
                     <div className={styles.chatListTitle}>
                         <h4 className={styles.h4}>It's room: <b>{room}</b> </h4>
@@ -91,9 +105,9 @@ function Chat({user, room, currentRoom}) {
                             required/>
                     </form>
                 </div>
-                <div className={styles.metaList}>
+                <div className={styles.btnMetaList} onClick={handlerChangeClass}></div>
+                <div className={styles.metaList} id = 'metaList'>
                     <div className={styles.metaWrapper}>
-                        
                         <div className={styles.chatters} >
                             <p>Current chatters:</p>
                             {Array.isArray(users) && users.map((user, i)=> (<span key={i}> {user} <br/></span>))}

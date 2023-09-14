@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../styles/CreateRoom.module.css'
 
-export default function CreateRoom({ addRoom, currentRoom}) {
+export default function CreateRoom({ addRoom, currentRoom, handlerChangeClass}) {
     const [newRoom, setNewRoom] = useState('');
 
     const handleClick = (e) =>{
@@ -12,6 +12,7 @@ export default function CreateRoom({ addRoom, currentRoom}) {
         currentRoom(newRoom)
         document.querySelector("#inputNewRoom").value = ''
         setNewRoom('')
+        handlerChangeClass()
     }
 
     const handleChange = (e) => {

@@ -3,6 +3,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 .chatList {
     width: calc(100% - 100px);
     box-sizing: border-box;
@@ -86,9 +87,7 @@
     padding-left: 10px;
 }
 @media (max-width: 700px){
-    .span{
-        font-size: 15px;
-    }
+    
 }
 .h4{
     width: 100%;
@@ -114,4 +113,47 @@
 }
 .chatters::-webkit-scrollbar {
     display: none;
+  }
+.btnMetaList{
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: calc(10vh + 10px);
+    width: 40px;
+    height: 40px;
+    background-image: url('../assercs/settings.png');
+    background-size: contain;
+}
+  @media (max-width: 750px) {
+    .wrapper{
+        width: 100%;
+        /* position: absolute; */
+    }
+    .metaList{
+        display: none;
+        height: 80vh;
+        position: absolute;
+        background-color:  rgb(216, 222, 213);
+        width: 100%;
+    }
+    .chatList{
+        width: 100%;
+    }
+    .chatListTitle{
+        width: calc(100% - 100px);
+        margin: 0 50px;
+    }
+    .btnMetaList{
+        display: block;
+        z-index: 10;
+    }
+    .btn{
+        min-height: 70px;
+    }
+    .inputChatText{
+        min-height: 70px;
+    }
+    span{
+        font-size: 22px;
+    }
   }

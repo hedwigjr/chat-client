@@ -26,6 +26,7 @@
     font-weight: 400;
     line-height: 115%; /* 23px */
     letter-spacing: 1.2px;
+    margin: 10px;
 }
 .user{
     display: flex;
