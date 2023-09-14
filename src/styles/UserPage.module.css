@@ -51,5 +51,8 @@
         display: none;
         width: 100%;
     }
+    .flex_grow{
+        height: 90vh;
+    }
 
 }
