@@ -4,9 +4,10 @@ import React from 'react'
 import styles from '../styles/UserRooms.module.css'
 
 
-export default function UserRooms({currentRoom, rooms, setCurrentRoom}) {
+export default function UserRooms({currentRoom, rooms, setCurrentRoom, handlerChangeClass}) {
     const handleClick = (e) =>{
         setCurrentRoom(e.target.value)
+        handlerChangeClass()
     }
     return (
         <>

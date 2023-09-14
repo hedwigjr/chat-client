@@ -32,3 +32,14 @@
     margin: 10px 2px;
     border-radius: 5px;
 }
+
+@media (max-width: 750px) {
+    .inputNewRoom{
+        min-height: 70px;
+        margin: 50px 5px 10px 5px;
+    }
+    .btn{
+        min-height: 70px;
+    }
+
+}
