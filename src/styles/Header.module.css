@@ -5,6 +5,16 @@
     justify-content: space-between;
 
 }
+.header > a{
+    margin: auto 0;
+    font-size: 20px;
+
+}
+.header div {
+    margin: auto 10px;
+}
+
+
 .link{
     display: flex;
     flex-direction: column;
@@ -39,5 +49,5 @@
     background: #9fc198;
 }
 .background{
-    background: #EDF2EC;
+    background-color: rgb(165, 137, 102);
 }

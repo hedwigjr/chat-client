@@ -1,0 +1,72 @@
+.banana {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    width: calc(100%);
+    --height: 95vh;
+    --size: 100px;
+    height: var(--height);
+}
+.speed0_5{
+    --speed: 5s;
+}
+.speed0_5 .form{
+    animation: spin 1.8s linear 0s infinite;
+}
+.speed1{
+    --speed: 1s;
+}
+.speed1 .form{
+    animation: spin 1s linear 0s infinite;
+}
+.speed1_5{
+    --speed: 1.5s;
+}
+.speed1_5 .form{
+    animation: spin 1.5s linear 0s infinite;
+}
+.speed2{
+    --speed: 2s;
+}
+.speed2 .form{
+    animation: spin 2s linear 0s infinite;
+}
+.speed3{
+    --speed: 3s;
+}
+.speed3 .form{
+    animation: spin 1.2s linear 0s infinite;
+}
+.speed4{
+    --speed: 4s;
+}
+.speed4 .form{
+    animation: spin 2.2s linear 0s infinite;
+}
+.pos-x {
+    animation-name: moveX;
+    animation-duration:var(--speed);
+    animation-timing-function:linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.pos-y {
+    animation-name: moveY;
+    animation-duration:calc(var(--speed) * 0.725);
+    animation-timing-function:linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes moveX {
+    0% {transform:translateX(0)}
+    100% {transform:translateX(calc(100% - var(--size)))}
+}
+@keyframes moveY {
+    0% {transform:translateY(0);}
+    100% {transform:translateY(calc(var(--height) - var(--size)))}
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}

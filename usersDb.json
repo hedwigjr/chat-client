@@ -1,0 +1,57 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "admin",
+      "password": "admin123"
+    },
+    {
+      "id": 2,
+      "login": "ilya",
+      "password": "ilya123"
+    },
+    {
+      "login": "hedwigjr",
+      "password": "213dsxcv",
+      "id": 3
+    },
+    {
+      "login": "hedwigjr1",
+      "password": "213dsxcv",
+      "id": 4
+    },
+    {
+      "login": "khovanskiyi",
+      "password": "1234",
+      "id": 5
+    },
+    {
+      "login": "khovanskiyi1",
+      "password": "1234",
+      "id": 6
+    },
+    {
+      "login": "admin213241",
+      "password": "123213",
+      "id": 7
+    },
+    {
+      "login": "wqewqe",
+      "password": "sdfds",
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "login": "hedwigjrBaza",
+      "password": "1234",
+      "id": 10
+    },
+    {
+      "login": "1234",
+      "password": "1234",
+      "id": 11
+    }
+  ]
+}
