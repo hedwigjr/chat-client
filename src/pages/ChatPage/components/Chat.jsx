@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 import io from 'socket.io-client'
-import { URL_API } from '../config';
+import { URL_API } from '../../../config';
 
 import styles from '../styles/Chat.module.css'
 import { useRef } from 'react';

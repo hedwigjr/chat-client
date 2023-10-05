@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import UserRooms from './UserRooms'
-import {useLocation } from 'react-router-dom';
+import UserRooms from './components/UserRooms'
 
-import '../styles/style.css'
-import styles from '../styles/UserPage.module.css'
+import '../../styles/style.css'
+import styles from './styles/ChatPage.module.css'
 
 
 import io from 'socket.io-client'
-import { URL_API } from '../config';
-import CreateRoom from './CreateRoom';
-import Chat from './Chat';
-import Header from './Header';
-import Footer from './Footer';
+import { URL_API } from '../../config';
+import CreateRoom from './components/CreateRoom';
+import Chat from './components/Chat';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import { useSelector } from 'react-redux';
+import { useAutorise } from '../../hooks/useAutorise';
 
 const socket = io.connect(URL_API)
 
 
-export default function UserPage() {
-  const {search} = useLocation();
-  const user = search.match(/=.+\b/).toString().substring(1)
+export default function ChatPage() {
+
+  const user = useSelector((state)=> state.user.login)
+
+  useAutorise()
 
   const [rooms, setRooms] = useState([])
   const [room, setRoom] = useState('')
@@ -72,7 +75,7 @@ export default function UserPage() {
 
   return (
     <div className={styles.column}>
-      <Header user={user} />
+      <Header/>
       <div className={['container', styles.flex_grow, styles.background].join(' ')}>
         <div className={['wrapper', styles.height].join(' ')}>
             <div className={styles.row}>
